@@ -1,0 +1,11 @@
+{
+  "name": "برنامج تربية الحلال - أبو خالد",
+  "short_name": "حلال أبو خالد",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#0d1511",
+  "theme_color": "#087642",
+  "lang": "ar",
+  "dir": "rtl",
+  "icons": []
+}
