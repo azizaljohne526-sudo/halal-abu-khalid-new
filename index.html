@@ -26,6 +26,12 @@ input,select,textarea{width:100%;background:var(--card2);color:var(--text);borde
 .notice{background:#3f3219;border:1px solid #765e2c;padding:10px;border-radius:12px;margin:9px 0}.oknotice{background:#163e2a;border:1px solid #2d704c;padding:10px;border-radius:12px;margin:9px 0}
 @media(max-width:720px){header h1{font-size:27px}.stats{grid-template-columns:repeat(2,1fr)}.menu{grid-template-columns:repeat(3,1fr);gap:8px}.menu button{min-height:105px;font-size:14px;padding:6px}.menu .ico{font-size:27px}.grid5,.grid4{grid-template-columns:repeat(2,1fr)}.tools{flex-direction:column}}
 </style>
+ <link rel="manifest" href="manifest.json">
+<script>
+if ('serviceWorker' in navigator) {
+ navigator.serviceWorker.register('sw.js');
+}
+</script>
 </head>
 <body>
 <div id="licenseLock" class="lock hidden" style="display:none!important"><div class="lockbox"><h2>🔐 تفعيل برنامج تربية الحلال</h2><p>رقم الجهاز</p><div id="deviceIdText" class="device"></div><input id="activationCode" placeholder="اكتب كود التفعيل"><button class="primary" onclick="activate()">تفعيل لمدة 3 شهور</button><div id="activationMsg" class="muted" style="margin-top:10px"></div></div></div>
