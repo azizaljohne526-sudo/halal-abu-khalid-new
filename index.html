@@ -94,7 +94,7 @@ function soldYoung(type){return db.sales.filter(x=>x.type===type).reduce((a,x)=>
 function stock(){
  let bt=birthTotals(),adds={نعجة:0,فحل:0,طلي:0,رخلة:0};
  db.stockAdds.forEach(x=>adds[x.type]=(adds[x.type]||0)+Number(x.count||0));
- let ewes=activeHerd().length+adds["نعجة"];
+let ewes=db.herd.length+adds["نعجة"];
  let rams=adds["فحل"]-db.sales.filter(x=>x.type==="فحل").reduce((a,x)=>a+Number(x.count||0),0)-deathYoung("فحل");
  let males=bt.male+adds["طلي"]-soldYoung("طلي")-deathYoung("طلي");
  let females=bt.female+adds["رخلة"]-soldYoung("رخلة")-deathYoung("رخلة");
