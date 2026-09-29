@@ -173,7 +173,9 @@ function codeFor(dev,period){return (hash32(LICENSE_SECRET+"|"+dev+"|"+period)+"
 function currentQuarter(d=new Date()){return d.getFullYear()+"Q"+(Math.floor(d.getMonth()/3)+1)}
 function activate(){let dev=deviceId(),code=activationCode.value.trim().toUpperCase(),now=new Date();let periods=[];for(let i=0;i<8;i++){let d=new Date(now.getFullYear(),now.getMonth()+i*3,1);periods.push(currentQuarter(d))}let found=periods.find(p=>codeFor(dev,p)===code);if(!found){activationMsg.textContent="كود التفعيل غير صحيح";return}let end=new Date();end.setMonth(end.getMonth()+3);localStorage.setItem("halal_license_end",end.toISOString());localStorage.setItem("halal_license_code",code);licenseLock.classList.add("hidden");checkLicense();alert("تم التفعيل لمدة 3 شهور")}
 function checkLicense(){let end=localStorage.getItem("halal_license_end"),now=new Date();if(!end||now>=new Date(end)){deviceIdText.textContent=deviceId();licenseLock.classList.remove("hidden");return}licenseLock.classList.add("hidden");let days=Math.ceil((new Date(end)-now)/86400000);licenseWarning.innerHTML=days<=7?`<div class="notice">🔐 باقي ${days} يوم على انتهاء التفعيل</div>`:""}
-applyTheme();renderDash();licenseLock.classList.add("hidden");
+if(localStorage.getItem("halal_license_end")){
+  licenseLock.classList.add("hidden");
+}
 </script>
 </body>
 </html>
