@@ -171,19 +171,12 @@ function hash32(s){let h=2166136261;for(let i=0;i<s.length;i++){h^=s.charCodeAt(
 function deviceId(){let id=localStorage.getItem("halal_device_id");if(!id){id="AK-"+crypto.getRandomValues(new Uint32Array(2)).join("-");localStorage.setItem("halal_device_id",id)}return id}
 function codeFor(dev,period){return (hash32(LICENSE_SECRET+"|"+dev+"|"+period)+"-"+hash32(period+"|"+dev+"|"+LICENSE_SECRET)).slice(0,17)}
 function currentQuarter(d=new Date()){return d.getFullYear()+"Q"+(Math.floor(d.getMonth()/3)+1)}
-function activate(){let dev=deviceId(),code=activationCode.value.trim().toUpperCase(),now=new Date();let periods=[];for(let i=0;i<8;i++){let d=new Date(now.getFullYear(),now.getMonth()+i*3,1);periods.push(currentQuarter(d))}let found=periods.find(p=>codeFor(dev,p)===code);if(!found){activationMsg.textContent="كود التفعيل غير صحيح";return}let end=new Date();end.setMonth(end.getMonth()+3);localStorage.setItem("halal_license_end",end.toISOString());localStorage.setItem("halal_license_code",code);licenseLock.classList.add("hidden");checkLicense();alert("تم التفعيل لمدة 3 شهور")}
- function checkLicense(){
-let end=localStorage.getItem("halal_license_end");
+function activate(){let dev=deviceId(),code=activationCode.value.trim().toUpperCase(),now=new Date();let periods=[];for(let i=0;i<8;i++){let d=new Date(now.getFullYear(),now.getMonth()+i*3,1);periods.push(currentQuarter(d))}let found=periods.find(p=>codeFor(dev,p)===code);if(!found){activationMsg.textContent="كود التفعيل غير صحيح";return}let end=new Date();end.setMonth(end.getMonth()+3);localStorage.setItem("halal_license_end",end.toISOString());localStorage.setItem("halal_license_code",code);licenseLock.classList.add("hidden");checkLicense();alert("
 
-if(end){
-  licenseLock.classList.add("hidden");
-}else{
-  licenseLock.classList.remove("hidden");
-  licenseLock.style.display="flex";
-}
-}
+ 
 
-checkLicense();
+
+
 </script>
 </body>
 </html>
